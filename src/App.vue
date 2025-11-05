@@ -4,7 +4,7 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <div>
-    Welcome to the future online home of Team Squander!
+    <h1>Welcome to the future online home of Team Squander!</h1>
   </div>
   <div>
     <a href="https://vite.dev" target="_blank">
