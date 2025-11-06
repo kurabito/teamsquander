@@ -4,8 +4,9 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <div>
-    <h1>Welcome to the future online home of Team Squander!</h1>
-    <img src="https://teamsquander.s3.us-west-2.amazonaws.com/SquanderFinal2024resizedTP.jpg" />
+    <h1>Welcome to the future online home of</h1>
+    <h1>Team Squander!</h1>
+    <img class="full-width" src="https://teamsquander.s3.us-west-2.amazonaws.com/SquanderFinal2024resizedTP.jpg" />
   </div>
   <div>
     <a href="https://vite.dev" target="_blank">
@@ -30,5 +31,9 @@ import HelloWorld from './components/HelloWorld.vue'
 }
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
+}
+.full-width {
+  max-width: 100%; /* Image will not exceed its container's width */
+  height: auto; /* Height adjusts proportionally to maintain aspect ratio */
 }
 </style>
