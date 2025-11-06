@@ -5,6 +5,7 @@ import HelloWorld from './components/HelloWorld.vue'
 <template>
   <div>
     <h1>Welcome to the future online home of Team Squander!</h1>
+    <img src="https://teamsquander.s3.us-west-2.amazonaws.com/SquanderFinal2024resizedTP.jpg" />
   </div>
   <div>
     <a href="https://vite.dev" target="_blank">
