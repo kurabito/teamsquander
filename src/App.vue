@@ -1,15 +1,24 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld.vue'
+import Home from './components/Home.vue'
 </script>
 
 <template>
-  <div>
+  <!-- <div>
     <h1>Welcome to the future online home of</h1>
     <h1>Team Squander!</h1>
     <img class="full-width" src="https://teamsquander.s3.us-west-2.amazonaws.com/SquanderFinal2024resizedTP.jpg" />
-  </div>
+  </div> -->
   <!-- <HelloWorld msg="Vite + Vue" /> -->
-</template>
+  <!-- <Home /> -->
+  <div id="app">
+    <nav>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/discs">Discs</router-link>
+    </nav>
+    <router-view></router-view>
+  </div>
+  </template>
 
 <style scoped>
 .logo {
@@ -23,9 +32,5 @@ import HelloWorld from './components/HelloWorld.vue'
 }
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
-}
-.full-width {
-  max-width: 100%; /* Image will not exceed its container's width */
-  height: auto; /* Height adjusts proportionally to maintain aspect ratio */
 }
 </style>
