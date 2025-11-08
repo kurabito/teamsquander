@@ -28,7 +28,7 @@ import axios from 'axios';
 const sheetData = ref([]);
 const headings = ref([]);
 const spreadsheetId = '1W4DviEJ1Bp1POmTqU17BmRuntjA745wjJEWoQm5s9qo';
-const apiKey = 'AIzaSyBaa-v2CTdli4nGA8yVzl_yTwZ4L6z5_m4';
+const apiKey = import.meta.env.VITE_APP_DISCS_API_KEY;
 const range = 'Available!A1:Z';
 
 const fetchSheetData = async () => {
