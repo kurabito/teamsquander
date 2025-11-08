@@ -6,8 +6,6 @@
 
 <template>
   <div>
-    <h1>Welcome to the online home of</h1>
-    <h1>Team Squander!</h1>
     <img class="full-width" src="https://teamsquander.s3.us-west-2.amazonaws.com/SquanderFinal2024resizedTP.jpg" />
   </div>
 </template>
