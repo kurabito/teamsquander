@@ -9,8 +9,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(row, index) in sheetData" :key="index">
-            <td v-for="(cell, cellIndex) in row" :key="cellIndex">{{ cell }}</td>
+          <tr v-for="(row, rowIndex) in visibleData" :key="rowIndex">
+            <td v-for="(cell, cellIndex) in row" :key="cellIndex" v-html="formatCell(cell, sheetData[rowIndex], cellIndex)"></td>
           </tr>
         </tbody>
       </table>
@@ -25,7 +25,8 @@
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
-const sheetData = ref([]);
+const sheetData = ref([]);        // all rows (unfiltered, includes URL col)
+const visibleData = ref([]);      // filtered rows (without URL col)
 const headings = ref([]);
 const spreadsheetId = '1W4DviEJ1Bp1POmTqU17BmRuntjA745wjJEWoQm5s9qo';
 const apiKey = import.meta.env.VITE_APP_DISCS_API_KEY;
@@ -38,8 +39,13 @@ const fetchSheetData = async () => {
     );
     const values = response.data.values;
     if (values && values.length > 0) {
-      headings.value = values[0]; // Assuming the first row contains headers
-      sheetData.value = values.slice(1); // Remaining rows are data
+      // Remove the heading for column 9 so it won’t render
+      headings.value = values[0].filter((_, index) => index !== 8);
+      sheetData.value = values.slice(1);
+      // Remove column 9 from each row’s data
+      visibleData.value = values.slice(1).map(row =>
+        row.filter((_, i) => i !== 8)
+      );
     }
   } catch (error) {
     console.error('Error fetching Google Sheet data:', error);
@@ -49,5 +55,22 @@ const fetchSheetData = async () => {
 onMounted(() => {
   fetchSheetData();
 });
+
+// Make column 2 (index 1) a link using the original column 9 (index 8)
+function formatCell(cell, row, cellIndex) {
+  const linkUrl = row[8]; // original URL column before filtering
+  if (cellIndex === 1 && linkUrl && linkUrl.startsWith('http')) {
+    return `<a href="${linkUrl}" target="_blank" rel="noopener noreferrer">${cell}</a>`;
+  }
+  return cell;
+}
 </script>
 
+<!-- <style>
+table {
+  width: 100%;
+}
+th:nth-child(9), td:nth-child(9) {
+  width: 10%;
+}
+</style> -->
