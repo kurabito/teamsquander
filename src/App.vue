@@ -31,6 +31,7 @@ html, body {
 #app {
   min-height: calc(var(--vh, 1vh) * 100); /* Use the calculated --vh */
   width: 100vw;
+  background-color: white;
 }
 .logo {
   height: 6em;
