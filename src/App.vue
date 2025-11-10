@@ -26,6 +26,7 @@ html, body {
   padding: 0;
   height: 100%;
   overflow: hidden;
+  background-color: white;
 }
 #app {
   min-height: calc(var(--vh, 1vh) * 100); /* Use the calculated --vh */
