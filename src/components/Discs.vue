@@ -39,12 +39,12 @@ const fetchSheetData = async () => {
     );
     const values = response.data.values;
     if (values && values.length > 0) {
-      // Remove the heading for column 9 so it won’t render
-      headings.value = values[0].filter((_, index) => index !== 8);
+      // Remove the heading for column 10 so it won’t render
+      headings.value = values[0].filter((_, index) => index !== 9);
       sheetData.value = values.slice(1);
       // Remove column 9 from each row’s data
       visibleData.value = values.slice(1).map(row =>
-        row.filter((_, i) => i !== 8)
+        row.filter((_, i) => i !== 9)
       );
     }
   } catch (error) {
@@ -58,7 +58,7 @@ onMounted(() => {
 
 // Make column 2 (index 1) a link using the original column 9 (index 8)
 function formatCell(cell, row, cellIndex) {
-  const linkUrl = row[8]; // original URL column before filtering
+  const linkUrl = row[9]; // original URL column before filtering
   if (cellIndex === 1 && linkUrl && linkUrl.startsWith('http')) {
     return `<a href="${linkUrl}" target="_blank" rel="noopener noreferrer">${cell}</a>`;
   }
