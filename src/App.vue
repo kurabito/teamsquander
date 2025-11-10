@@ -1,6 +1,6 @@
 <script setup>
 // import HelloWorld from './components/HelloWorld.vue'
-import Home from './components/Home.vue'
+// import Home from './components/Home.vue'
 </script>
 
 <template>
@@ -21,6 +21,16 @@ import Home from './components/Home.vue'
   </template>
 
 <style scoped>
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+#app {
+  min-height: calc(var(--vh, 1vh) * 100); /* Use the calculated --vh */
+  width: 100vw;
+}
 .logo {
   height: 6em;
   padding: 1.5em;

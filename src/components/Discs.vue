@@ -66,11 +66,13 @@ function formatCell(cell, row, cellIndex) {
 }
 </script>
 
-<!-- <style>
+<style>
 table {
-  width: 100%;
+  /* width: 100%; */
+  margin-left: auto;
+  margin-right: auto;
 }
-th:nth-child(9), td:nth-child(9) {
+/* th:nth-child(9), td:nth-child(9) {
   width: 10%;
-}
-</style> -->
+} */
+</style>
