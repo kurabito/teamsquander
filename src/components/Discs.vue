@@ -56,7 +56,7 @@ onMounted(() => {
   fetchSheetData();
 });
 
-// Make column 2 (index 1) a link using the original column 9 (index 8)
+// Make column 2 (index 1) a link using the original column 10 (index 9)
 function formatCell(cell, row, cellIndex) {
   const linkUrl = row[9]; // original URL column before filtering
   if (cellIndex === 1 && linkUrl && linkUrl.startsWith('http')) {
