@@ -10,6 +10,7 @@ import { Vue3Marquee } from 'vue3-marquee';
         <span>This is for Doug!</span>
         <span>Way down in the hole</span>
         <span>Get on up!</span>
+        <span>Happy with par</span>
       </Vue3Marquee>
     </div>
     <picture>
