@@ -7,7 +7,6 @@ import { Vue3Marquee } from 'vue3-marquee';
   <div>
     <div class="half">
       <Vue3Marquee>
-        <span>This is for Doug!</span>
         <span>Way down in the hole</span>
         <span>Get on up!</span>
         <span>Happy with par</span>
