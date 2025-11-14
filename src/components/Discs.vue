@@ -3,11 +3,11 @@
     <h1>Disc Library</h1>
     <div v-if="sheetData.length">
       <table>
-        <thead>
+        <!-- <thead>
           <tr>
             <th v-for="heading in headings" :key="heading">{{ heading }}</th>
           </tr>
-        </thead>
+        </thead> -->
         <tbody>
           <tr v-for="(row, rowIndex) in visibleData" :key="rowIndex">
             <td v-for="(cell, cellIndex) in row" :key="cellIndex" v-html="formatCell(cell, sheetData[rowIndex], cellIndex)"></td>
@@ -41,9 +41,10 @@ const fetchSheetData = async () => {
     if (values && values.length > 0) {
       // Remove the heading for column 10 so it won’t render
       headings.value = values[0].filter((_, index) => index !== 9);
-      sheetData.value = values.slice(1);
+      // sheetData.value = values.slice(1);
+      sheetData.value = values.slice();
       // Remove column 9 from each row’s data
-      visibleData.value = values.slice(1).map(row =>
+      visibleData.value = values.slice().map(row =>
         row.filter((_, i) => i !== 9)
       );
     }
