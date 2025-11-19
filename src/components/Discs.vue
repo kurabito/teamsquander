@@ -117,7 +117,7 @@ table {
   /* width: 100%; */
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
 }
 /* th:nth-child(9), td:nth-child(9) {
   width: 10%;
