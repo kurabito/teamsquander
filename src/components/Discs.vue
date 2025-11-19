@@ -18,7 +18,7 @@ const jeffsVisibleData = ref([]);      // filtered rows (without URL col)
 const jeffsSpreadsheetId = '1W4DviEJ1Bp1POmTqU17BmRuntjA745wjJEWoQm5s9qo';
 const jeffsRange = 'Available!A1:Z';
 
-const fetchDiscs = async (spreadsheetId, range, apiKey, headings, discs, visibleData, linkColumn) => {
+const fetchDiscs = async (spreadsheetId, range, headings, discs, visibleData, linkColumn) => {
   try {
     const response = await axios.get(
       `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`
@@ -48,8 +48,8 @@ function formatCell(cell, row, cellIndex, linkDisplayColumn, linkTargetColumn) {
 }
 
 onMounted(() => {
-  fetchDiscs(dougsSpreadsheetId, dougsRange, apiKey, dougsHeadings, dougsDiscs, dougsVisibleData, 10);
-  fetchDiscs(jeffsSpreadsheetId, jeffsRange, apiKey, jeffsHeadings, jeffsDiscs, jeffsVisibleData, 9);
+  fetchDiscs(dougsSpreadsheetId, dougsRange, dougsHeadings, dougsDiscs, dougsVisibleData, 10);
+  fetchDiscs(jeffsSpreadsheetId, jeffsRange, jeffsHeadings, jeffsDiscs, jeffsVisibleData, 9);
 });
 </script>
 
