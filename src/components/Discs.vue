@@ -1,32 +1,32 @@
 <template>
   <div>
     <h1>Disc Library</h1>
-    <h2>Jeff's Discs</h2>
-    <div v-if="jeffsDiscs.length">
+    <h2>Doug's Discs</h2>
+    <div v-if="dougsDiscs.length">
       <table>
-        <!-- <thead>
+        <thead>
           <tr>
-            <th v-for="heading in headings" :key="heading">{{ heading }}</th>
+            <th v-for="heading in dougsHeadings" :key="heading">{{ heading }}</th>
           </tr>
-        </thead> -->
+        </thead>
         <tbody>
-          <tr v-for="(row, rowIndex) in jeffsVisibleData" :key="rowIndex">
-            <td v-for="(cell, cellIndex) in row" :key="cellIndex" v-html="formatCell(cell, jeffsDiscs[rowIndex], cellIndex)"></td>
+          <tr v-for="(row, rowIndex) in dougsVisibleData" :key="rowIndex">
+            <td v-for="(cell, cellIndex) in row" :key="cellIndex" v-html="formatCell(cell, dougsDiscs[rowIndex], cellIndex)"></td>
           </tr>
         </tbody>
       </table>
     </div>
-    <h2>Doug's Discs</h2>
-    <div v-if="dougsDiscs.length">
+    <h2>Jeff's Discs</h2>
+    <div v-if="jeffsDiscs.length">
       <table>
-        <!-- <thead>
+        <thead>
           <tr>
-            <th v-for="heading in headings" :key="heading">{{ heading }}</th>
+            <th v-for="heading in jeffsHeadings" :key="heading">{{ heading }}</th>
           </tr>
-        </thead> -->
+        </thead>
         <tbody>
-          <tr v-for="(row, rowIndex) in dougsVisibleData" :key="rowIndex">
-            <td v-for="(cell, cellIndex) in row" :key="cellIndex" v-html="formatCell(cell, dougsDiscs[rowIndex], cellIndex)"></td>
+          <tr v-for="(row, rowIndex) in jeffsVisibleData" :key="rowIndex">
+            <td v-for="(cell, cellIndex) in row" :key="cellIndex" v-html="formatCell(cell, jeffsDiscs[rowIndex], cellIndex)"></td>
           </tr>
         </tbody>
       </table>
@@ -41,39 +41,10 @@
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
-// Jeff's discs
-const jeffsDiscs = ref([]);        // all rows (unfiltered, includes URL col)
-const jeffsVisibleData = ref([]);      // filtered rows (without URL col)
-const headings = ref([]);
-const jeffsSpreadsheetId = '1W4DviEJ1Bp1POmTqU17BmRuntjA745wjJEWoQm5s9qo';
-const jeffsApiKey = import.meta.env.VITE_APP_DISCS_API_KEY;
-const jeffsRange = 'Available!A1:Z';
-
-const fetchJeffsDiscs = async () => {
-  try {
-    const response = await axios.get(
-      `https://sheets.googleapis.com/v4/spreadsheets/${jeffsSpreadsheetId}/values/${jeffsRange}?key=${jeffsApiKey}`
-    );
-    const values = response.data.values;
-    if (values && values.length > 0) {
-      // Remove the heading for column 10 so it won’t render
-      headings.value = values[0].filter((_, index) => index !== 9);
-      // sheetData.value = values.slice(1);
-      jeffsDiscs.value = values.slice();
-      // Remove column 9 from each row’s data
-      jeffsVisibleData.value = values.slice().map(row =>
-        row.filter((_, i) => i !== 9)
-      );
-    }
-  } catch (error) {
-    console.error("Error fetching Jeff's data:", error);
-  }
-};
-
 // Doug's discs
+const dougsHeadings = ref([]);
 const dougsDiscs = ref([]);        // all rows (unfiltered, includes URL col)
 const dougsVisibleData = ref([]);      // filtered rows (without URL col)
-// const headings = ref([]);
 const dougsSpreadsheetId = '1n8pwUgPt8PQGb2quGQs7MBP9sZJTC0v_6ZMJsTvlWLI';
 const dougsApiKey = import.meta.env.VITE_APP_DISCS_API_KEY;
 const dougsRange = 'Sheet1!A1:Z';
@@ -86,11 +57,10 @@ const fetchDougsDiscs = async () => {
     const values = response.data.values;
     if (values && values.length > 0) {
       // Remove the heading for column 10 so it won’t render
-      headings.value = values[0].filter((_, index) => index !== 9);
-      // sheetData.value = values.slice(1);
-      dougsDiscs.value = values.slice();
+      dougsHeadings.value = values[0].filter((_, index) => index !== 9);
+      dougsDiscs.value = values.slice(1);
       // Remove column 9 from each row’s data
-      dougsVisibleData.value = values.slice().map(row =>
+      dougsVisibleData.value = values.slice(1).map(row =>
         row.filter((_, i) => i !== 9)
       );
     }
@@ -99,6 +69,33 @@ const fetchDougsDiscs = async () => {
   }
 };
 
+// Jeff's discs
+const jeffsHeadings = ref([]);
+const jeffsDiscs = ref([]);        // all rows (unfiltered, includes URL col)
+const jeffsVisibleData = ref([]);      // filtered rows (without URL col)
+const jeffsSpreadsheetId = '1W4DviEJ1Bp1POmTqU17BmRuntjA745wjJEWoQm5s9qo';
+const jeffsApiKey = import.meta.env.VITE_APP_DISCS_API_KEY;
+const jeffsRange = 'Available!A1:Z';
+
+const fetchJeffsDiscs = async () => {
+  try {
+    const response = await axios.get(
+      `https://sheets.googleapis.com/v4/spreadsheets/${jeffsSpreadsheetId}/values/${jeffsRange}?key=${jeffsApiKey}`
+    );
+    const values = response.data.values;
+    if (values && values.length > 0) {
+      // Remove the heading for column 10 so it won’t render
+      jeffsHeadings.value = values[0].filter((_, i) => i !== 9);
+      jeffsDiscs.value = values.slice(1);
+      // Remove column 9 from each row’s data
+      jeffsVisibleData.value = values.slice(1).map(row =>
+        row.filter((_, i) => i !== 9)
+      );
+    }
+  } catch (error) {
+    console.error("Error fetching Jeff's data:", error);
+  }
+};
 
 onMounted(() => {
   fetchJeffsDiscs();
@@ -115,11 +112,12 @@ function formatCell(cell, row, cellIndex) {
 }
 </script>
 
-<style>
+<style scoped>
 table {
   /* width: 100%; */
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 20px;
 }
 /* th:nth-child(9), td:nth-child(9) {
   width: 10%;
