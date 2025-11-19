@@ -1,42 +1,3 @@
-<template>
-  <div>
-    <h1>Disc Library</h1>
-    <h2>Doug's Discs</h2>
-    <div v-if="dougsDiscs.length">
-      <table>
-        <thead>
-          <tr>
-            <th v-for="heading in dougsHeadings" :key="heading">{{ heading }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(row, rowIndex) in dougsVisibleData" :key="rowIndex">
-            <td v-for="(cell, cellIndex) in row" :key="cellIndex" v-html="formatCell(cell, dougsDiscs[rowIndex], cellIndex)"></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <h2>Jeff's Discs</h2>
-    <div v-if="jeffsDiscs.length">
-      <table>
-        <thead>
-          <tr>
-            <th v-for="heading in jeffsHeadings" :key="heading">{{ heading }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(row, rowIndex) in jeffsVisibleData" :key="rowIndex">
-            <td v-for="(cell, cellIndex) in row" :key="cellIndex" v-html="formatCell(cell, jeffsDiscs[rowIndex], cellIndex)"></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div v-else>
-      <p>Loading data...</p>
-    </div>
-  </div>
-</template>
-
 <script setup>
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
@@ -111,6 +72,45 @@ function formatCell(cell, row, cellIndex) {
   return cell;
 }
 </script>
+
+<template>
+  <div>
+    <h1>Disc Library</h1>
+    <h2>Doug's Discs</h2>
+    <div v-if="dougsDiscs.length">
+      <table>
+        <thead>
+          <tr>
+            <th v-for="heading in dougsHeadings" :key="heading">{{ heading }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(row, rowIndex) in dougsVisibleData" :key="rowIndex">
+            <td v-for="(cell, cellIndex) in row" :key="cellIndex" v-html="formatCell(cell, dougsDiscs[rowIndex], cellIndex)"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <h2>Jeff's Discs</h2>
+    <div v-if="jeffsDiscs.length">
+      <table>
+        <thead>
+          <tr>
+            <th v-for="heading in jeffsHeadings" :key="heading">{{ heading }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(row, rowIndex) in jeffsVisibleData" :key="rowIndex">
+            <td v-for="(cell, cellIndex) in row" :key="cellIndex" v-html="formatCell(cell, jeffsDiscs[rowIndex], cellIndex)"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div v-else>
+      <p>Loading data...</p>
+    </div>
+  </div>
+</template>
 
 <style scoped>
 table {
