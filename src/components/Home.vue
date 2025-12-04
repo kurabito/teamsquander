@@ -8,6 +8,7 @@ import { Vue3Marquee } from 'vue3-marquee';
       Way down in the hole &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       Get on up! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       Happy with par &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      Only the mediocre are always at their best - Stuart Smalley &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </Vue3Marquee>
     <picture>
       <source srcset="https://teamsquander.s3.us-west-2.amazonaws.com/SquanderFinal2024resizedTP.jpg" media="(prefers-color-scheme: light)">
