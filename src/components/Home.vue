@@ -9,6 +9,7 @@ import { Vue3Marquee } from 'vue3-marquee';
       Get on up! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       Happy with par &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       Only the mediocre are always at their best &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      I meant to do that &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </Vue3Marquee>
     <picture>
       <source srcset="https://teamsquander.s3.us-west-2.amazonaws.com/SquanderFinal2024resizedTP.jpg" media="(prefers-color-scheme: light)">
