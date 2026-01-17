@@ -8,8 +8,8 @@ const apiKey = import.meta.env.VITE_APP_DISCS_API_KEY;
 const davesHeadings = ref([]);
 const davesDiscs = ref([]);        // all rows (unfiltered, includes URL col)
 const davesVisibleData = ref([]);      // filtered rows (without URL col)
-const davesSpreadsheetId = '113RdlVabb1rge8u5DyeC3DuB2odpWvWkJjQr-MVYyhRY';
-const davesRange = 'Available!A1:Z';
+const davesSpreadsheetId = '13RdlVabb1rge8u5DyeC3DuB2odpWvWkJjQr-MVYyhRY';
+const davesRange = 'Sheet1!A1:Z';
 
 // Doug's discs
 const dougsHeadings = ref([]);
