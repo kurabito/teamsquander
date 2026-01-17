@@ -4,6 +4,13 @@ import axios from 'axios';
 
 const apiKey = import.meta.env.VITE_APP_DISCS_API_KEY;
 
+// Dave's discs
+const davesHeadings = ref([]);
+const davesDiscs = ref([]);        // all rows (unfiltered, includes URL col)
+const davesVisibleData = ref([]);      // filtered rows (without URL col)
+const davesSpreadsheetId = '1W4DviEJ1Bp1POmTqU17BmRuntjA745wjJEWoQm5s9qo';
+const davesRange = 'Available!A1:Z';
+
 // Doug's discs
 const dougsHeadings = ref([]);
 const dougsDiscs = ref([]);        // all rows (unfiltered, includes URL col)
@@ -48,6 +55,7 @@ function formatCell(cell, row, cellIndex, linkDisplayColumn, linkTargetColumn) {
 }
 
 onMounted(() => {
+  fetchDiscs(davesSpreadsheetId, davesRange, davesHeadings, davesDiscs, davesVisibleData, 10);
   fetchDiscs(dougsSpreadsheetId, dougsRange, dougsHeadings, dougsDiscs, dougsVisibleData, 10);
   fetchDiscs(jeffsSpreadsheetId, jeffsRange, jeffsHeadings, jeffsDiscs, jeffsVisibleData, 9);
 });
@@ -56,6 +64,21 @@ onMounted(() => {
 <template>
   <div>
     <h1>Disc Library</h1>
+    <h2>Dave's Discs</h2>
+    <div v-if="davesDiscs.length">
+      <table>
+        <thead>
+          <tr>
+            <th v-for="heading in davesHeadings" :key="heading">{{ heading }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(row, rowIndex) in davesVisibleData" :key="rowIndex">
+            <td v-for="(cell, cellIndex) in row" :key="cellIndex" v-html="formatCell(cell, davesDiscs[rowIndex], cellIndex, 1, 10)"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <h2>Doug's Discs</h2>
     <div v-if="dougsDiscs.length">
       <table>
